@@ -8,7 +8,7 @@ import Modal from "../Modal/Modal";
 import { useDebouncedCallback } from "use-debounce";
 
 export default function App() {
-  const [page, setPage] = useState(2);
+  const [page, setPage] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
   const [text, setText] = useState("");
   const { data, isLoading, isError, isSuccess } = useQuery({
