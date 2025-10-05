@@ -9,12 +9,11 @@ import { useDebouncedCallback } from "use-debounce";
 
 export default function App() {
   const [page, setPage] = useState(2);
-  const [perPage, setPerPage] = useState(20);
   const [isOpen, setIsOpen] = useState(false);
   const [text, setText] = useState("");
   const { data, isLoading, isError, isSuccess } = useQuery({
-    queryKey: ["notes", page, perPage, text],
-    queryFn: () => noteFetch(page, perPage, text),
+    queryKey: ["notes", page, text],
+    queryFn: () => noteFetch(page, text),
     placeholderData: keepPreviousData,
   });
 

@@ -22,11 +22,10 @@ const headers = {
 
 export const noteFetch = async (
   page: number,
-  perPage: number,
   text: string
 ): Promise<FetchItem> => {
   const res = await axios.get<FetchItem>(
-    `${API_URL}?search=${text}&page=${page}&perPage=${perPage}&sortBy=created`,
+    `${API_URL}?search=${text}&page=${page}&perPage=20&sortBy=created`,
     { headers }
   );
 
