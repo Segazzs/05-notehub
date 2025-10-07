@@ -1,16 +1,10 @@
 import axios from "axios";
 
-import type { Item } from "../types/note";
+import type { Note, FormValues } from "../types/note";
 
 interface FetchItem {
-  notes: Item[];
+  notes: Note[];
   totalPages: number;
-}
-
-interface FormValues {
-  title: string;
-  content: string;
-  tag: string;
 }
 
 const API_URL = "https://notehub-public.goit.study/api/notes";
@@ -28,17 +22,25 @@ export const noteFetch = async (
     `${API_URL}?search=${text}&page=${page}&perPage=20&sortBy=created`,
     { headers }
   );
+  console.log(res);
+  return res.data;
+};
+
+export const noteDelete = async (id: string): Promise<FormValues> => {
+  const res = await axios.delete<FormValues>(`${API_URL}/${id}`, { headers });
+
+  console.log(res.data);
 
   return res.data;
 };
 
-export const noteDelete = async (id: string): Promise<void> => {
-  await axios.delete(`${API_URL}/${id}`, { headers });
-};
-
-export const noteCreate = async ({ title, content, tag }: FormValues) => {
+export const noteCreate = async ({
+  title,
+  content,
+  tag,
+}: FormValues): Promise<FormValues> => {
   const newNote = { title, content, tag };
 
-  const res = await axios.post(API_URL, newNote, { headers });
+  const res = await axios.post<FormValues>(API_URL, newNote, { headers });
   return res.data;
 };

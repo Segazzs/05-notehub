@@ -1,10 +1,10 @@
 import css from "./NoteLost.module.css";
-import type { Item } from "../../types/note";
+import type { Note } from "../../types/note";
 import { noteDelete } from "../../services/noteService";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface NoteListProps {
-  notes: Item[];
+  notes: Note[];
 }
 
 export default function NoteList({ notes }: NoteListProps) {
